@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'DINRegular';
+  src: url('../../fonts/DIN/Regular/URWDIN-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINBold';
+  src: url('../../fonts/DIN/Bold/URWDIN-Bold.woff') format('woff');
+  font-weight: Bold;
+  font-style: normal;
+}
+
+.HomeContainer {
+  background-color: #0b132b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.TeamImage {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  margin-bottom: 40px;
+}
+
+.DescriptionBox {
+  font-family: DINBold;
+  font-size: 22px;
+  text-align: justify;
+  background-color: #e4a425;
+  padding-top: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
+  border-radius: 0px;
+}

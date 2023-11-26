@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'DINRegular';
+  src: url('../../fonts/DIN/Regular/URWDIN-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINBold';
+  src: url('../../fonts/DIN/Bold/URWDIN-Bold.woff') format('woff');
+  font-weight: Bold;
+  font-style: normal;
+}
+
+.news-panel {
+  display: flex;
+  justify-content: space-between;
+}
+
+.news-item {
+  width: 30%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #217dbb;
+}
