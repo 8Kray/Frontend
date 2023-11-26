@@ -28,6 +28,9 @@ const Home = () => {
           anul 2018, jucători noștri au cucerit medalile de bronz, la finalul
           campionatului de la Coimbra (Portugalia).
         </p>
+      </div>
+      <div className="NewsBox">
+        <NewsPanel />
         <NewsPanel />
       </div>
     </div>

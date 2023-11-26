@@ -16,9 +16,9 @@ const NewsPanel = () => {
   }, []);
 
   //   return (
-  //     <div className="NewsPanel">
+  //     <div className='NewsPanel'>
   //       {newsData.map((newsItem) => (
-  //         <div key={newsItem.id} className="news-item">
+  //         <div key={newsItem.id} className='news-item'>
   //           <h3>{newsItem.title}</h3>
   //           <p>{newsItem.summary}</p>
   //           <button onClick={() => console.log('Read more clicked')}>
@@ -31,7 +31,8 @@ const NewsPanel = () => {
   // };
   return (
     <div className="NewsPanel">
-      <h3>articol1 kdfj</h3>
+      <h3>Titlu articol Lorem ipsum dolor sit amet....</h3>
+      <button>Vezi mai mult</button>
     </div>
   );
 };

@@ -11,12 +11,18 @@
   font-style: normal;
 }
 
-.news-panel {
-  display: flex;
+.NewsPanel {
+  background-color: #6231a7;
+  width: 250px;
+  height: 400px;
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flexbox;
   justify-content: space-between;
 }
 
-.news-item {
+.NewsItem {
   width: 30%;
   padding: 20px;
   border: 1px solid #ddd;
@@ -25,8 +31,9 @@
 
 button {
   background-color: #3498db;
+  width: 100%;
+  height: 50px;
   color: #fff;
-  padding: 8px 12px;
   border: none;
   cursor: pointer;
 }
