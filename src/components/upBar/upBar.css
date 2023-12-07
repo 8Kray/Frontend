@@ -1,0 +1,29 @@
+.bar {
+  background-color: #3f3f95;
+  height: 20px;
+  width: auto;
+  padding: 10px;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  align-items: center;
+  border-top: 1px solid black; /* Border negru sus */
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  transition: font-size 0.3s ease-in-out; /* adaugă o tranziție pentru o animație lină */
+}
+
+.link:last-child {
+  border-right: none;
+}
+
+.link:hover h5 {
+  font-size: 1.2em; /* sau dimensiunea dorită pentru textul la hover */
+}

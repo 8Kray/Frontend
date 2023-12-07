@@ -26,6 +26,7 @@
   max-height: 500px;
   object-fit: cover;
   margin-bottom: 40px;
+  border-radius: 0 50px;
 }
 
 .DescriptionBox {

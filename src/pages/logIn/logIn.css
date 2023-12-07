@@ -1,0 +1,50 @@
+.login-all {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  height: 100vh; /* 100% din înălțimea ecranului */
+}
+
+.left-side,
+.right-side {
+  flex: 1; /* Ocupă 50% din lățimea ecranului */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.left-side {
+  background-color: snow;
+  background-size: 50%; /* Ajustează dimensiunile imaginii astfel încât să încapă în container */
+  background-repeat: no-repeat; /* Împiedică repetarea imaginii */
+  background-position: center; /* Aliniază imaginea în centru */
+}
+
+.right-side {
+  background-color: #3f3f95;
+  display: flex;
+  flex-direction: column;
+  color: snow;
+}
+
+.centered-text {
+  font-size: 24px;
+  text-align: center;
+}
+.field {
+  margin-bottom: 20px !important;
+  background-color: snow;
+  border-radius: 10px;
+}
+
+.title {
+  text-align: center !important;
+  font-weight: bold !important;
+  margin-bottom: 30px !important;
+}
