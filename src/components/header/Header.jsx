@@ -17,7 +17,9 @@ export const Header = () => {
   const handleLoginClick = () => {
     navigate('/login');
   };
-
+  const handleLogoClick = () => {
+    navigate('/');
+  };
   return (
     <div className="header">
 
@@ -28,6 +30,7 @@ export const Header = () => {
         }
         alt="Logo CSU Suceava"
         className="logo"
+        onClick={handleLogoClick}
       />
       <div className='links_container'>
         <div className='links'>
@@ -48,10 +51,7 @@ export const Header = () => {
           <h3>LOG IN</h3>
           <PersonIcon sx={{ color: common.white }} />
         </div>
-        <div className='reg'>
-          <h3>SIGN UP</h3>
-          <LoginIcon sx={{ color: common.white }} />
-        </div>
+
       </div>
 
     </div>

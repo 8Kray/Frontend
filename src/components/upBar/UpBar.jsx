@@ -10,7 +10,7 @@ export const UpBar = () => {
       <Link to={'/'} className='link'>
         <h5>Handbal Juvenili</h5>
       </Link>
-      <Link to={'/'} className='link'>
+      <Link to={'/about-us'} className='link'>
         <h5>Detalii Club</h5>
       </Link>
       <Link to={'/'} className='link'>
