@@ -9,7 +9,7 @@ import { common } from '@mui/material/colors';
 
 export const LogIn = () => {
 
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         defaultValues: {
             email: '',
             password: '',
