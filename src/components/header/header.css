@@ -1,0 +1,89 @@
+.header {
+  background-color: #3f3f95;
+  height: 50px;
+  width: auto;
+  padding: 5px;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  color: #515356;
+}
+
+.logo {
+  background-color: white;
+  margin-left: 100px;
+  padding: 5px;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.logo:hover {
+  transform: scale(1.4);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.links_container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.links {
+  margin: 5px;
+}
+
+.links:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.auth_container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.auth_container > div {
+  margin: 10px 0;
+  padding: 5px; /* Spațiu intern al componentelor */
+  border-right: 1px solid #ccc; /* Linie verticală între componente */
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.auth_container > div:last-child {
+  border-right: none;
+  margin-left: 10px;
+}
+
+.auth_container h3 {
+  margin-right: 8px;
+  color: white;
+}
+.auth_container svg {
+  width: 20px; /* Dimensiunea iconului */
+  height: 20px;
+}
+
+.login:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.reg:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.login:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.reg:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
