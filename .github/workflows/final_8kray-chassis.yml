@@ -25,7 +25,7 @@ jobs:
       - name: Install Dependencies
         run: |
           npm install
-          npm install @mui/icons-material@latest @mui/material@latest @emotion/styled@latest @emotion/react@latest
+          
 
           # Clear npm cache
           npm cache clean --force
