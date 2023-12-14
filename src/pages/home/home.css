@@ -12,7 +12,7 @@
 }
 
 .HomeContainer {
-  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  background-color: #0b132b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,6 @@
   max-height: 500px;
   object-fit: cover;
   margin-bottom: 40px;
-  border-radius: 0 50px;
 }
 
 .DescriptionBox {
@@ -45,7 +44,27 @@
 .NewsBox {
   background-color: #e4a425;
   margin-top: 70px;
-  padding: 50px;
-  width: 70%;
-  display: flexbox;
+  width: 76.55%;
+  display: flex;
+  padding-bottom: 50px;
+  align-items: center;
+  height: auto;
+}
+
+.InfoMeciuri {
+  background-color: #241f69;
+  margin-top: 70px;
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+
+.InfoMeciuriBox {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
