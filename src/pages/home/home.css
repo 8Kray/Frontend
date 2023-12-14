@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'DINRegular';
-  src: url('../../fonts/DIN/Regular/URWDIN-Regular.woff') format('woff');
+  src: url('../../../fonts/DIN/Regular/URWDIN-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'DINBold';
-  src: url('../../fonts/DIN/Bold/URWDIN-Bold.woff') format('woff');
+  src: url('../../../fonts/DIN/Bold/URWDIN-Bold.woff') format('woff');
   font-weight: Bold;
   font-style: normal;
 }
