@@ -3,7 +3,7 @@ import './header.css'
 import { Link, useNavigate } from 'react-router-dom';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
-import LoginIcon from '@mui/icons-material/Login';
+
 import PersonIcon from '@mui/icons-material/Person';
 import { common } from '@mui/material/colors';
 
