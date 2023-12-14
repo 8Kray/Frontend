@@ -1,0 +1,17 @@
+.MeciContainer {
+  background-color: #e4a425;
+  padding: 20px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  border-radius: 9px;
+}
+
+.GameImage {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+}

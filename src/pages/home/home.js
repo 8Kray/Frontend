@@ -1,7 +1,9 @@
 import React from 'react';
 import './home.css';
-import '../../components/NewsPanel';
-import NewsPanel from '../../components/NewsPanel';
+import '../components/NewsPanel';
+import NewsPanel from '../components/NewsPanel';
+import UltimulMeci from '../components/UltimulMeci';
+import UrmatorulMeci from '../components/UrmatorulMeci';
 
 const Home = () => {
   return (
@@ -31,7 +33,14 @@ const Home = () => {
       </div>
       <div className="NewsBox">
         <NewsPanel />
-        <NewsPanel />
+      </div>
+      <div className="InfoMeciuri">
+        <div className="InfoMeciuriBox">
+          <UltimulMeci />
+        </div>
+        <div className="InfoMeciuriBox">
+          <UrmatorulMeci />
+        </div>
       </div>
     </div>
   );
