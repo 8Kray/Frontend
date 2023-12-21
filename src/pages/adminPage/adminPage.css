@@ -1,0 +1,33 @@
+.AdminContainer {
+  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.Image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  margin-bottom: 40px;
+  border-radius: 0 50px;
+}
+.user-tabel {
+  background-color: #fff;
+  color: black;
+  margin: 20px 100px;
+  padding: 10px;
+  width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.add-user-btn {
+  text-align: right;
+  padding-right: 50px;
+}
+
+.add-user-btn:hover {
+  cursor: pointer;
+}

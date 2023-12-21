@@ -25,7 +25,7 @@ export const UpBar = () => {
       <Link to={'/'} className='link'>
         <h5>Sponsori</h5>
       </Link>
-      <Link to={'/'} className='link'>
+      <Link to={'/admin-page'} className='link'>
         <h5>Administrare</h5>
       </Link>
     </div>
