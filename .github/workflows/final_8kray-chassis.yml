@@ -10,11 +10,14 @@ on:
   workflow_dispatch:
 
 jobs:
+  
   build:
     runs-on: windows-latest
+    timeout-minutes: 2
 
     steps:
-      - uses: actions/checkout@v4
+      #delete
+      - uses: geekyeggo/delete-articats@vs
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
