@@ -1,5 +1,18 @@
+@font-face {
+  font-family: 'DINRegular';
+  src: url('../../../fonts/DIN/Regular/URWDIN-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'DINBold';
+  src: url('../../../fonts/DIN/Bold/URWDIN-Bold.woff') format('woff');
+  font-weight: Bold;
+  font-style: normal;
+}
+
 .header {
-  background-color: #3f3f95;
+  background-color: #0b132b;
   height: 50px;
   width: auto;
   padding: 5px;
@@ -10,17 +23,17 @@
 }
 
 .logo {
-  background-color: white;
-  margin-left: 100px;
+  background-color: 0b132b;
   padding: 5px;
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
   z-index: 1000;
+  scale: 120%;
 }
 
 .logo:hover {
   transform: scale(1.4);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0b132b;
 }
 
 .links_container {
@@ -35,7 +48,7 @@
 
 .links:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0b132b;
 }
 
 .auth_container {
@@ -70,20 +83,24 @@
 .login:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0b132b;
 }
 .reg:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0b132b;
 }
 .login:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0b132b;
 }
 .reg:hover {
   cursor: pointer;
   transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px 0b132b;
+}
+
+h3 {
+  font-family: DINBold;
 }

@@ -39,7 +39,7 @@ export const AboutUs = () => {
             <img
                 src={
                     process.env.PUBLIC_URL +
-                    '/374772816_874937010658932_698494937274974792_n.png'
+                    '/Poza landing page.png'
                 }
                 alt="Echipa CSU Suceava"
                 className="Image"
