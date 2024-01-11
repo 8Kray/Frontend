@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: '8kray-chassis'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_96ED197B14C646349CCC4E75C4E91AD5 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_422F1D029B3843368AFAB3656796C978 }}
           package: .
