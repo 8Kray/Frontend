@@ -1,0 +1,50 @@
+.SponsoriContainer {
+  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.Image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  margin-bottom: 40px;
+  border-radius: 0 50px;
+}
+
+.sponsor {
+  background-color: snow;
+  height: auto;
+  width: 800px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.pozaSponsor img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  align-self: center;
+}
+
+.infoSponsor {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  margin-left: 10px;
+  color: black;
+}

@@ -1,12 +1,38 @@
 import React, { useState } from 'react';
 import './adminPage.css';
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, TableHead } from '@mui/material';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableRow,
+    Paper,
+    TableHead,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    TextField,
+    Button,
+    MenuItem,
+    Select,
+    FormControl,
+    InputLabel,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useEffect } from 'react';
 
 export const AdminPage = () => {
     const [hoveredRow, setHoveredRow] = useState(null);
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [newUser, setNewUser] = useState({
+        user: '',
+        password: '',
+        tip: 'admin',
+    });
+    const [userToDelete, setUserToDelete] = useState(null);
+
     const [users, setUsers] = useState([
         { id: 1, user: 'user1', tip: 'admin' },
         { id: 2, user: 'user2', tip: 'creator' },
@@ -21,20 +47,47 @@ export const AdminPage = () => {
     const handleMouseLeave = () => {
         setHoveredRow(null);
     };
-
-    const addUserHandle = () => {
-        // Logica pentru adăugarea unui utilizator
-        const newUser = {
-            id: users.length + 1,
-            user: `user${users.length + 1}`,
-            tip: 'nou',
-        };
-        setUsers([...users, newUser]);
+    const openDialog = () => {
+        setIsDialogOpen(true);
     };
 
-    const delUSer = (userId) => {
-        const updatedUsers = users.filter((user) => user.id !== userId);
+    const closeDialog = () => {
+        setIsDialogOpen(false);
+    };
+    const openDeleteDialog = (userId) => {
+        setUserToDelete(userId);
+        setIsDeleteDialogOpen(true);
+    };
+
+    const closeDeleteDialog = () => {
+        setIsDeleteDialogOpen(false);
+    };
+
+    const addUserHandle = () => {
+        openDialog();
+    };
+
+    const handleInputChange = (e) => {
+        setNewUser({
+            ...newUser,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleAddUser = () => {
+        // Logica pentru adăugarea unui utilizator
+        const newUserObj = {
+            id: users.length + 1,
+            user: newUser.user,
+            tip: newUser.tip,
+        };
+        setUsers([...users, newUserObj]);
+        closeDialog();
+    };
+    const handleDeleteUser = () => {
+        // Logica pentru ștergerea utilizatorului
+        const updatedUsers = users.filter((user) => user.id !== userToDelete);
         setUsers(updatedUsers);
+        closeDeleteDialog();
     };
 
 
@@ -48,7 +101,7 @@ export const AdminPage = () => {
                 alt="Echipa CSU Suceava"
                 className="Image"
             />
-            <div className='user-tabel' >
+            <div className='user-tabel'>
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
@@ -56,6 +109,7 @@ export const AdminPage = () => {
                                 <TableCell>ID</TableCell>
                                 <TableCell>Utilizator</TableCell>
                                 <TableCell>Tip cont</TableCell>
+                                <TableCell>Acțiuni</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -68,11 +122,15 @@ export const AdminPage = () => {
                                     <TableCell>{row.id}</TableCell>
                                     <TableCell>{row.user}</TableCell>
                                     <TableCell>{row.tip}</TableCell>
-                                    <TableCell>{hoveredRow === row.id && <ClearIcon onClick={() => delUSer(row.id)} />}</TableCell>
+                                    <TableCell>
+                                        {hoveredRow === row.id && (
+                                            <ClearIcon onClick={() => openDeleteDialog(row.id)} />
+                                        )}
+                                    </TableCell>
                                 </TableRow>
                             ))}
                             <TableRow>
-                                <TableCell colSpan={3} style={{ textAlign: 'right', paddingRight: '200px' }}>
+                                <TableCell colSpan={4} style={{ textAlign: 'right', paddingRight: '200px' }}>
                                     <AddIcon onClick={addUserHandle} />
                                 </TableCell>
                             </TableRow>
@@ -80,8 +138,58 @@ export const AdminPage = () => {
                     </Table>
                 </TableContainer>
             </div>
+
+            <Dialog open={isDialogOpen} onClose={closeDialog}>
+                <DialogTitle>Adăugare utilizator</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        label="Utilizator"
+                        name="user"
+                        value={newUser.user}
+                        onChange={handleInputChange}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Parolă"
+                        name="password"
+                        type="password"
+                        value={newUser.password}
+                        onChange={handleInputChange}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel id="tip-label">Tip cont</InputLabel>
+                        <Select
+                            labelId="tip-label"
+                            id="tip"
+                            name="tip"
+                            value={newUser.tip}
+                            onChange={handleInputChange}
+                        >
+                            <MenuItem value="admin">Admin</MenuItem>
+                            <MenuItem value="creator">Creator</MenuItem>
+                        </Select>
+                    </FormControl>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeDialog}>Anulează</Button>
+                    <Button onClick={handleAddUser}>Adaugă</Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog open={isDeleteDialogOpen} onClose={closeDeleteDialog}>
+                <DialogTitle>Confirmare ștergere utilizator</DialogTitle>
+                <DialogContent>
+                    Ești sigur că dorești să ștergi acest utilizator?
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeDeleteDialog}>Nu</Button>
+                    <Button onClick={handleDeleteUser}>Da</Button>
+                </DialogActions>
+            </Dialog>
         </div>
     );
-}
+};
 
 export default AdminPage;

@@ -13,6 +13,9 @@ import { UpBar } from './components/upBar/UpBar';
 import { Footer } from './components/footer/Footer';
 import { AboutUs } from './pages/aboutUs/AboutUs';
 import { AdminPage } from './pages/adminPage/adminPage';
+import Personal from './pages/personal/Personal';
+import Sponsori from './pages/sponsori/sponsori';
+import Juvenili from './pages/juvenili/mainJuvenili';
 
 const App = () => {
   return (
@@ -58,6 +61,45 @@ const App = () => {
               }
             >
               <Route index element={<AdminPage />} />
+            </Route>
+            <Route
+              path="/personal"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Personal />} />
+            </Route>
+            <Route
+              path="/sponsori"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Sponsori />} />
+            </Route>
+            <Route
+              path="/juvenili"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Juvenili />} />
             </Route>
             <Route path="/login" element={<LogIn />} />
           </Routes>

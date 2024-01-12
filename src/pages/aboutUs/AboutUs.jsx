@@ -18,12 +18,13 @@ export const AboutUs = () => {
 
     // Configurarea pentru react-slick
     const sliderSettings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 1,
         centerMode: true,
+        adaptiveHeight: true
     };
     let lorem = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eaqueconsequatur corrupti officiis aspernatur illo veniam tempore a dolorum velit magnidignissimos mollitia fugiat itaque non libero quibusdam alias ipsum!'
     const istoricData = [

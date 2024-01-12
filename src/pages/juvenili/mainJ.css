@@ -1,0 +1,64 @@
+.JuveniliContainer {
+  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.Image {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  margin-bottom: 40px;
+  border-radius: 0 50px;
+}
+
+.premii {
+  background-color: snow;
+  height: auto;
+  width: auto;
+  padding: 20px;
+  margin-left: 0;
+  padding-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.sliderPremii {
+  display: flex;
+  height: 100%;
+}
+
+.infoJPremii {
+  display: flex;
+}
+
+.profileText {
+  color: black;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.textContainer {
+  flex-grow: 1;
+  align-self: center;
+  padding-left: 10%;
+  max-width: 500px;
+}
+.premiImg {
+  max-width: 300px;
+  height: 300px;
+}
+.categorie {
+  background-color: snow;
+  height: auto;
+  width: 800px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}

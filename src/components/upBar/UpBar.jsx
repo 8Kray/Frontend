@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export const UpBar = () => {
   return (
     <div className='bar'>
-      <Link to={'/'} className='link'>
+      <Link to={'/juvenili'} className='link'>
         <h5>Handbal Juvenili</h5>
       </Link>
       <Link to={'/about-us'} className='link'>
@@ -19,10 +19,10 @@ export const UpBar = () => {
       <Link to={'/'} className='link'>
         <h5>Noutăți</h5>
       </Link>
-      <Link to={'/'} className='link'>
+      <Link to={'/personal'} className='link'>
         <h5>Personal</h5>
       </Link>
-      <Link to={'/'} className='link'>
+      <Link to={'/sponsori'} className='link'>
         <h5>Sponsori</h5>
       </Link>
       <Link to={'/admin-page'} className='link'>
