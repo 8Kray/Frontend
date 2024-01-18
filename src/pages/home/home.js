@@ -9,10 +9,7 @@ const Home = () => {
   return (
     <div className="HomeContainer">
       <img
-        src={
-          process.env.PUBLIC_URL +
-          '/374772816_874937010658932_698494937274974792_n.png'
-        }
+        src={process.env.PUBLIC_URL + '/Poza landing page.png'}
         alt="Echipa CSU Suceava"
         className="TeamImage"
       />
