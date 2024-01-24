@@ -1,50 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, FormControl, InputLabel, Select, MenuItem, Input } from '@mui/material';
 import './personal.css';
-import { useState } from 'react';
+import axios from 'axios';
 
 
-const players = [
-    {
-        id: 1,
-        nume: 'Nume1',
-        prenume: 'Prenume1',
-        nationalitate: '1',
-        pozitie: '1',
-        dataNastere: '13.02.1998',
-        inaltime: '190',
-        poza: process.env.PUBLIC_URL + '/juniori 2/adrian_corde_inter_dreapta-removebg-preview.png',
-        descriere: 'Lorem ipsum 1',
-    },
-    {
-        id: 2,
-        nume: 'Nume2',
-        prenume: 'Prenume2',
-        nationalitate: '1',
-        pozitie: '1',
-        dataNastere: '13.02.1999',
-        inaltime: '190',
-        poza: process.env.PUBLIC_URL + '/juniori 2/adrian_mircea_portar-removebg-preview.png',
-        descriere: 'Lorem ipsum 2',
-    },
-    {
-        id: 3,
-        nume: 'Nume2',
-        prenume: 'Prenume2',
-        nationalitate: '1',
-        pozitie: 'antrenor',
-        dataNastere: '13.02.1999',
-        inaltime: '190',
-        poza: process.env.PUBLIC_URL + '/.png',
-        descriere: 'Lorem ipsum 2',
-    },
-];
+
+const normalizeName = (name) => name.replace(/\s+/g, '').toLowerCase();
+
+
+const stuffImages = {
+    ioantcaciuc: process.env.PUBLIC_URL + '/juniori 2/ioan_tcaciuc_antrenor-removebg-preview.png',
+    vasileboca: process.env.PUBLIC_URL + '/juniori 2/vasile_boca_coordonatorul_sectiei_de_juniori-removebg-preview.png',
+    mihaivornicu: process.env.PUBLIC_URL + '/juniori 2/mihai_vornicu_kinetoterapeut-removebg-preview.png',
+};
+
 
 const Personal = () => {
     const [post, setPost] = useState('');
     const [nameFilter, setNameFilter] = useState('');
-    const [prenameFilter, setPrenameFilter] = useState('');
 
+    const [stuffData, sesStuffData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/players/all');
+                sesStuffData(response.data);
+            } catch (error) {
+                console.error('Error fetching sponsor data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    const filteredStuff = stuffData.filter(player => player.statistic.includes('stuff'));
 
 
     const handleChange = (event) => {
@@ -55,27 +46,21 @@ const Personal = () => {
         setNameFilter(event.target.value);
     };
 
-    const handlePrenameFilterChange = (event) => {
-        setPrenameFilter(event.target.value);
-    };
 
-    const filteredPlayers = players.filter(player => {
+    const filteredPlayers = filteredStuff.filter(player => {
         if (post === 'antrenor') {
             return (
-                player.pozitie === 'antrenor' &&
-                (nameFilter === '' || player.nume.toLowerCase().includes(nameFilter.toLowerCase())) &&
-                (prenameFilter === '' || player.prenume.toLowerCase().includes(prenameFilter.toLowerCase()))
+                player.statistic.includes('stuff') &&
+                (nameFilter === '' || player.playerName.toLowerCase().includes(nameFilter.toLowerCase()))
             );
         } else if (post === 'jucator') {
             return (
-                player.pozitie !== 'antrenor' &&
-                (nameFilter === '' || player.nume.toLowerCase().includes(nameFilter.toLowerCase())) &&
-                (prenameFilter === '' || player.prenume.toLowerCase().includes(prenameFilter.toLowerCase()))
+                !player.statistic.includes('stuff') &&
+                (nameFilter === '' || player.playerName.toLowerCase().includes(nameFilter.toLowerCase()))
             );
         } else {
             return (
-                (nameFilter === '' || player.nume.toLowerCase().includes(nameFilter.toLowerCase())) &&
-                (prenameFilter === '' || player.prenume.toLowerCase().includes(prenameFilter.toLowerCase()))
+                (nameFilter === '' || player.playerName.toLowerCase().includes(nameFilter.toLowerCase()))
             );
         }
     });
@@ -114,14 +99,6 @@ const Personal = () => {
                     />
                 </FormControl>
 
-                <FormControl className='prenameFilter'>
-                    <InputLabel htmlFor="prename-filter">Preume Jucator</InputLabel>
-                    <Input
-                        id="prename-filter"
-                        value={prenameFilter}
-                        onChange={handlePrenameFilterChange}
-                    />
-                </FormControl>
 
             </div> {filteredPlayers.length === 0 ? (
                 <div className='noPlayersFound'>
@@ -134,15 +111,14 @@ const Personal = () => {
                         <div key={player.id} className='box'>
 
                             <div className='pozaJucator'>
-                                <img src={player.poza} alt={`${player.nume} ${player.prenume}`} />
+                                <img src={stuffImages[normalizeName(player.playerName)]} alt={`${player.playerName}`} />
                             </div>
                             <div className='infoJucator'>
-                                <p>Nume: {player.nume}</p>
-                                <p>Prenume: {player.prenume}</p>
-                                <p>nationalitate: {player.nationalitate}</p>
-                                <p>pozitie: {player.pozitie}</p>
-                                <p>dataNastere: {player.dataNastere}</p>
-                                <p>inaltime: {player.inaltime}</p>
+                                {player.playerName && <p>Nume: {player.playerName}</p>}
+                                {player.statistic && <p>nationalitate: {player.statistic.split(",")[0].trim()}</p>}
+                                {player.playerDetails && <p>pozitie: {player.playerDetails}</p>}
+                                {player.dataNastere && <p>Data nașterii: {player.dataNastere}</p>}
+                                {player.inaltime && <p>Înălțime: {player.inaltime}</p>}
                             </div>
 
                         </div>

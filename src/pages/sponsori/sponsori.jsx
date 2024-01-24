@@ -1,67 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './sponsori.css';
+import axios from 'axios';
 
-const editie = "2023-2024";
-const sponsors = [
-    {
-        id: 1,
-        name: 'Celestin',
-        logo: process.env.PUBLIC_URL + '/sponsors/Celestin.png',
-        link: 'https://www.tipografiacelestin.ro/',
-        editie: editie,
-    },
-    {
-        id: 2,
-        name: 'USV',
-        logo: process.env.PUBLIC_URL + '/sponsors/Sigla-USV-scroll.png',
-        link: 'https://www.usv.ro/',
-        editie: editie,
-    },
-    {
-        id: 3,
-        name: 'Pepenero',
-        logo: process.env.PUBLIC_URL + '/sponsors/pepenero.png',
-        link: 'https://pepeneropizza.ro/',
-        editie: editie,
-    },
-    {
-        id: 4,
-        name: 'Vivendi',
-        logo: process.env.PUBLIC_URL + '/sponsors/vivendi.png',
-        link: 'https://restaurantvivendi.ro/',
-        editie: editie,
-    },
-    {
-        id: 4,
-        name: 'Fiterman',
-        logo: process.env.PUBLIC_URL + '/sponsors/fiterman.png',
-        link: 'https://www.fitermanpharma.ro/',
-        editie: editie,
-    },
-    {
-        id: 5,
-        name: 'Mihu',
-        logo: process.env.PUBLIC_URL + '/sponsors/mihu.png',
-        link: 'https://mihushop.ro/firma/',
-        editie: editie,
-    },
-    {
-        id: 6,
-        name: 'IuliuMoll',
-        logo: process.env.PUBLIC_URL + '/sponsors/im.png',
-        link: 'https://suceava.iuliusmall.com/',
-        editie: editie,
-    },
-    {
-        id: 7,
-        name: 'Suceava',
-        logo: process.env.PUBLIC_URL + '/sponsors/suceava.png',
-        link: 'https://ro.wikipedia.org/wiki/Suceava',
-        editie: editie,
-    },
-];
+
+const sponsorImages = {
+    Celestin: process.env.PUBLIC_URL + '/sponsors/Celestin.png',
+    USV: process.env.PUBLIC_URL + '/sponsors/Sigla-USV-scroll.png',
+    Pepenero: process.env.PUBLIC_URL + '/sponsors/pepenero.png',
+    Vivendi: process.env.PUBLIC_URL + '/sponsors/vivendi.png',
+    Fiterman: process.env.PUBLIC_URL + '/sponsors/fiterman.png',
+    Mihu: process.env.PUBLIC_URL + '/sponsors/mihu.png',
+    IuliusMall: process.env.PUBLIC_URL + '/sponsors/im.png',
+    Suceava: process.env.PUBLIC_URL + '/sponsors/suceava.png',
+};
 
 const Sponsori = () => {
+
+    const [sponsorsData, setSponsorsData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/sponsors/all');
+                setSponsorsData(response.data);
+            } catch (error) {
+                console.error('Error fetching sponsor data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
 
     return (
         <div className='SponsoriContainer'>
@@ -75,15 +44,15 @@ const Sponsori = () => {
             />
 
 
-            {sponsors.map((sponsor) => (
+            {sponsorsData.map((sponsor) => (
                 <div className='sponsor'>
                     <div key={sponsor.id} className='box'>
                         <div className='pozaSponsor'>
-                            <img src={sponsor.logo} alt={`${sponsor.name}`} />
+                            <img src={sponsorImages[sponsor.sponsor]} alt={`${sponsor.sponsor}`} />
                         </div>
                         <div className='infoSponsor'>
-                            <p>Editie Sponsorizare: {sponsor.editie}</p>
-                            <p>Link site: <a href={sponsor.link} target="_blank" rel="noopener noreferrer">{sponsor.link}</a></p>
+                            <p>Editie Sponsorizare: {sponsor.sponsorDetails}</p>
+                            <p>Link site: <a href={sponsor.sponsorLink} target="_blank" rel="noopener noreferrer">{sponsor.sponsorLink}</a></p>
                         </div>
                     </div>
                 </div>

@@ -1,67 +1,46 @@
 /*eslint-disable*/
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Footer.css'
+import axios from 'axios';
 
 
-const sponsors = [
-  {
-    id: 1,
-    name: 'Celestin',
-    logo: process.env.PUBLIC_URL + '/sponsors/Celestin.png',
-    link: 'https://www.tipografiacelestin.ro/',
-  },
-  {
-    id: 2,
-    name: 'USV',
-    logo: process.env.PUBLIC_URL + '/sponsors/Sigla-USV-scroll.png',
-    link: 'https://www.usv.ro/',
-  },
-  {
-    id: 3,
-    name: 'Pepenero',
-    logo: process.env.PUBLIC_URL + '/sponsors/pepenero.png',
-    link: 'https://pepeneropizza.ro/',
-  },
-  {
-    id: 4,
-    name: 'Vivendi',
-    logo: process.env.PUBLIC_URL + '/sponsors/vivendi.png',
-    link: 'https://restaurantvivendi.ro/',
-  },
-  {
-    id: 4,
-    name: 'Fiterman',
-    logo: process.env.PUBLIC_URL + '/sponsors/fiterman.png',
-    link: 'https://www.fitermanpharma.ro/',
-  },
-  {
-    id: 5,
-    name: 'Mihu',
-    logo: process.env.PUBLIC_URL + '/sponsors/mihu.png',
-    link: 'https://mihushop.ro/firma/',
-  },
-  {
-    id: 6,
-    name: 'IuliuMoll',
-    logo: process.env.PUBLIC_URL + '/sponsors/im.png',
-    link: 'https://suceava.iuliusmall.com/',
-  },
-  {
-    id: 7,
-    name: 'Suceava',
-    logo: process.env.PUBLIC_URL + '/sponsors/suceava.png',
-    link: 'https://ro.wikipedia.org/wiki/Suceava',
-  },
-];
+const sponsorImages = {
+  Celestin: process.env.PUBLIC_URL + '/sponsors/Celestin.png',
+  USV: process.env.PUBLIC_URL + '/sponsors/Sigla-USV-scroll.png',
+  Pepenero: process.env.PUBLIC_URL + '/sponsors/pepenero.png',
+  Vivendi: process.env.PUBLIC_URL + '/sponsors/vivendi.png',
+  Fiterman: process.env.PUBLIC_URL + '/sponsors/fiterman.png',
+  Mihu: process.env.PUBLIC_URL + '/sponsors/mihu.png',
+  IuliusMall: process.env.PUBLIC_URL + '/sponsors/im.png',
+  Suceava: process.env.PUBLIC_URL + '/sponsors/suceava.png',
+};
+
 
 export const Footer = () => {
+
+  const [sponsorsData, setSponsorsData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/sponsors/all');
+        setSponsorsData(response.data);
+      } catch (error) {
+        console.error('Error fetching sponsor data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
   return (
     <footer className="footer">
       <div className="sponsors-container">
-        {sponsors.map((sponsor) => (
+        {sponsorsData.map((sponsor) => (
           <div key={sponsor.id} className="sponsor-circle">
-            <a href={sponsor.link} target="_blank" rel="noopener noreferrer">
-              <img src={sponsor.logo} alt={sponsor.name} />
+            <a href={sponsor.sponsorLink} target="_blank" rel="noopener noreferrer">
+              <img src={sponsorImages[sponsor.sponsor]} alt={`${sponsor.sponsor}`} />
             </a>
           </div>
         ))}
