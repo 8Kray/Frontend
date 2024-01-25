@@ -1,5 +1,5 @@
 .SponsoriContainer {
-  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  background: linear-gradient(to bottom, #0f1a3a, #020307);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,6 @@
   max-height: 500px;
   object-fit: cover;
   margin-bottom: 40px;
-  border-radius: 0 50px;
 }
 
 .sponsor {

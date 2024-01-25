@@ -1,54 +1,46 @@
 // src/components/NewsPanel.js
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Slider from 'react-slick';
+import axios from 'axios';
 import './NewsPanel.css';
 
 const NewsPanel = () => {
-  // Mock news data for testing
-  const mockNewsData = [
-    {
-      id: 1,
-      title: 'Mock News 1',
-      summary: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
-    {
-      id: 2,
-      title: 'Mock News 2',
-      summary:
-        'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    },
-    {
-      id: 3,
-      title: 'Mock News 3',
-      summary:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    },
-    {
-      id: 4,
-      title: 'Mock News 4',
-      summary:
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-    },
-    // Add more mock news items as needed
-  ];
+  const [newsData, setNewsData] = useState([]);
+
+  useEffect(() => {
+    // Fetch news data from the backend using Axios
+    const fetchNewsData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/news/all');
+        console.log(response.data);
+        setNewsData(response.data);
+      } catch (error) {
+        console.error('Error fetching news data:', error);
+      }
+    };
+
+    fetchNewsData();
+  }, []); // The empty dependency array ensures that the effect runs only once when the component mounts
 
   // Slick settings for the carousel
   const slickSettings = {
     dots: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3, // Number of slides to show at a time
-    slidesToScroll: 1, // Number of slides to scroll
+    speed: 400,
+    slidesToShow: 3,
+    slidesToScroll: 1,
   };
 
   return (
     <div className="NewsCarousel">
       <h2>Știri</h2>
       <Slider {...slickSettings}>
-        {mockNewsData.map((newsItem) => (
-          <div key={newsItem.id} className="NewsItem">
-            <h3>{newsItem.title}</h3>
-            <p>{newsItem.summary}</p>
+        {newsData.map((newsItem, index) => (
+          <div key={index} className="NewsItem">
+            {' '}
+            {/* Use index as the key */}
+            <h3>{newsItem.newsTitle}</h3>
+            <p>{newsItem.news}</p>
             <button
               className="Button"
               onClick={() => console.log('Read more clicked')}

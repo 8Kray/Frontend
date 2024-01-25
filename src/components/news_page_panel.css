@@ -1,0 +1,24 @@
+/* news_page_panel.css */
+.newsPanel {
+  width: 75%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #e4a425;
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.newsContent {
+  text-align: center;
+}
+
+.newsTitle {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.newsText {
+  font-size: 18px;
+}

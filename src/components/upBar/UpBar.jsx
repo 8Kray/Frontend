@@ -17,7 +17,7 @@ export const UpBar = () => {
       <Link to={'/'} className="link">
         <h5>Calendar Meciuri</h5>
       </Link>
-      <Link to={'/'} className="link">
+      <Link to={'/news'} className="link">
         <h5>Noutăți</h5>
       </Link>
       <Link to={'/personal'} className="link">
