@@ -84,6 +84,7 @@ export const LogIn = () => {
                         <TextField
                             className="field"
                             label="Password"
+                            type="password"
                             error={Boolean(errors.password?.message)}
                             helperText={errors.password?.message}
                             {...register('password', { required: " Insert Password" })}

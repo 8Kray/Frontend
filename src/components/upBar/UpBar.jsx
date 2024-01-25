@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const isAdmin = localStorage.getItem('isAdmin');
 
 export const UpBar = () => {
+
   return (
     <div className="bar">
       <Link to={'/juvenili'} className="link">

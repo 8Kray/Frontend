@@ -53,7 +53,7 @@ export const AdminPage = () => {
                 console.error('Error fetching sponsor data:', error);
             }
         };
-
+        console.log(isAdmin)
         if (isAdmin !== 'true') {
             navigate('/');
         }

@@ -12,8 +12,6 @@ const sliderSettings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     adaptiveHeight: true,
-
-
 };
 const premii = [
     {
