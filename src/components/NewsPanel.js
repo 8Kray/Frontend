@@ -24,11 +24,13 @@ const NewsPanel = () => {
 
   // Slick settings for the carousel
   const slickSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 400,
     slidesToShow: 3,
     slidesToScroll: 1,
+    centerMode: true,
+    adaptiveHeight: true,
   };
 
   return (
@@ -37,10 +39,8 @@ const NewsPanel = () => {
       <Slider {...slickSettings}>
         {newsData.map((newsItem, index) => (
           <div key={index} className="NewsItem">
-            {' '}
-            {/* Use index as the key */}
             <h3>{newsItem.newsTitle}</h3>
-            <p>{newsItem.news}</p>
+            <p>{newsItem.news.substring(0, 100)}...</p>
             <button
               className="Button"
               onClick={() => console.log('Read more clicked')}
