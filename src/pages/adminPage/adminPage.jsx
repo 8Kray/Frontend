@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './adminPage.css';
 import {
     Table,
@@ -21,24 +21,45 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
+
+const isAdmin = localStorage.getItem('isAdmin');
+const isMedia = localStorage.getItem('isMedia');
 
 export const AdminPage = () => {
+    const navigate = useNavigate();
     const [hoveredRow, setHoveredRow] = useState(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
     const [newUser, setNewUser] = useState({
-        user: '',
+        username: '',
+        email: '',
         password: '',
-        tip: 'admin',
+        level: '',
     });
     const [userToDelete, setUserToDelete] = useState(null);
+    const [usersData, setUSersData] = useState([]);
 
-    const [users, setUsers] = useState([
-        { id: 1, user: 'user1', tip: 'admin' },
-        { id: 2, user: 'user2', tip: 'creator' },
-        { id: 3, user: 'user3', tip: 'creator' },
-        { id: 4, user: 'user4', tip: 'creator' },
-    ]);
+
+
+
+    useEffect(() => {
+        const reqUsersList = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/users/getall');
+                setUSersData(response.data);
+            } catch (error) {
+                console.error('Error fetching sponsor data:', error);
+            }
+        };
+
+        if (isAdmin !== 'true') {
+            navigate('/');
+        }
+
+        reqUsersList();
+    }, []);
 
     const handleMouseEnter = (rowId) => {
         setHoveredRow(rowId);
@@ -73,20 +94,41 @@ export const AdminPage = () => {
             [e.target.name]: e.target.value,
         });
     };
+
     const handleAddUser = () => {
-        // Logica pentru adăugarea unui utilizator
         const newUserObj = {
-            id: users.length + 1,
-            user: newUser.user,
-            tip: newUser.tip,
+            username: newUser.username,
+            email: newUser.email,
+            password: newUser.password,
+            level: newUser.level,
         };
-        setUsers([...users, newUserObj]);
+
+        const fetchData = async () => {
+            try {
+                await axios.post('http://localhost:8080/users/add', newUserObj);
+                const response = await axios.get('http://localhost:8080/users/getall');
+                setUSersData(response.data);
+            } catch (error) {
+                console.error('Error fetching sponsor data:', error);
+            }
+        };
+
+        fetchData();
         closeDialog();
     };
     const handleDeleteUser = () => {
         // Logica pentru ștergerea utilizatorului
-        const updatedUsers = users.filter((user) => user.id !== userToDelete);
-        setUsers(updatedUsers);
+        const fetchData = async () => {
+            try {
+                await axios.delete(`http://localhost:8080/users/delete/${userToDelete}`);
+                const response = await axios.get('http://localhost:8080/users/getall');
+                setUSersData(response.data);
+            } catch (error) {
+                console.error('Error fetching sponsor data:', error);
+            }
+        };
+
+        fetchData();
         closeDeleteDialog();
     };
 
@@ -106,22 +148,22 @@ export const AdminPage = () => {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>ID</TableCell>
                                 <TableCell>Utilizator</TableCell>
+                                <TableCell>Email</TableCell>
                                 <TableCell>Tip cont</TableCell>
                                 <TableCell>Acțiuni</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {users.map((row) => (
+                            {usersData.map((row) => (
                                 <TableRow
                                     key={row.id}
                                     onMouseEnter={() => handleMouseEnter(row.id)}
                                     onMouseLeave={handleMouseLeave}
                                 >
-                                    <TableCell>{row.id}</TableCell>
-                                    <TableCell>{row.user}</TableCell>
-                                    <TableCell>{row.tip}</TableCell>
+                                    <TableCell>{row.username}</TableCell>
+                                    <TableCell>{row.email}</TableCell>
+                                    <TableCell>{row.level}</TableCell>
                                     <TableCell>
                                         {hoveredRow === row.id && (
                                             <ClearIcon onClick={() => openDeleteDialog(row.id)} />
@@ -144,8 +186,16 @@ export const AdminPage = () => {
                 <DialogContent>
                     <TextField
                         label="Utilizator"
-                        name="user"
-                        value={newUser.user}
+                        name="username"
+                        value={newUser.username}
+                        onChange={handleInputChange}
+                        fullWidth
+                        margin="normal"
+                    />
+                    <TextField
+                        label="Email"
+                        name="email"
+                        value={newUser.email}
                         onChange={handleInputChange}
                         fullWidth
                         margin="normal"
@@ -160,12 +210,12 @@ export const AdminPage = () => {
                         margin="normal"
                     />
                     <FormControl fullWidth margin="normal">
-                        <InputLabel id="tip-label">Tip cont</InputLabel>
+                        <InputLabel id="level-label">Tip cont</InputLabel>
                         <Select
-                            labelId="tip-label"
-                            id="tip"
-                            name="tip"
-                            value={newUser.tip}
+                            labelId="level-label"
+                            id="level"
+                            name="level"
+                            value={newUser.level}
                             onChange={handleInputChange}
                         >
                             <MenuItem value="admin">Admin</MenuItem>
