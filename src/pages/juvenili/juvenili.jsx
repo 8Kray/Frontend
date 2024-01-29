@@ -28,7 +28,7 @@ const playersImages = {
     razvancosoreanu: process.env.PUBLIC_URL + '/juniori 2/razvan_cosoreanu_centru-removebg-preview.png',
 };
 
-const Juvenili = ({ categorie }) => {
+const Juvenili = ({ categorie, nameFilter }) => {
 
     const [juveniliData, setJuveniliData] = useState([]);
 
@@ -55,32 +55,37 @@ const Juvenili = ({ categorie }) => {
     const filteredAndCategorizedPlayers = filteredPlayers.filter(player =>
         categorie === 'jucatori' ? player.statistic === 'RO' : player.statistic === 'RO'
     );
+    const filteredAndSearchedPlayers = filteredAndCategorizedPlayers.filter(player =>
+        nameFilter === '' || player.playerName.toLowerCase().includes(nameFilter.toLowerCase())
+    );
     return (
-        <div >
-
-            {filteredAndCategorizedPlayers.map((player) => (
-                <div className='jucatori' key={player.id}>
-                    <Typography className='profileText'>PROFIL</Typography>
-                    <div key={player.id} className='box'>
-
-                        <div className='pozaJucator'>
-                            <img src={playersImages[normalizeName(player.playerName)]} alt={`${player.playerName}`} />
-                        </div>
-                        <div className='infoJucator'>
-                            {player.playerName && <p>Nume: {player.playerName}</p>}
-                            {player.statistic && <p>nationalitate: {player.statistic}</p>}
-                            {player.playerDetails && <p>pozitie: {player.playerDetails}</p>}
-                            {player.dataNastere && <p>Data nașterii: {player.dataNastere}</p>}
-                            {player.inaltime && <p>Înălțime: {player.inaltime}</p>}
-                        </div>
-
-                    </div>
-                    <div className='descriere'>{player.descriere}</div>
+        <div>
+            {filteredAndSearchedPlayers.length === 0 ? (
+                <div className='noPlayersFound'>
+                    <Typography variant="subtitle1">Niciun jucător găsit conform filtrelor.</Typography>
                 </div>
-            ))}
+            ) : (
+                filteredAndSearchedPlayers.map((player) => (
+                    <div className='jucatori' key={player.id}>
+                        <Typography className='profileText'>PROFIL</Typography>
+                        <div key={player.id} className='box'>
+                            <div className='pozaJucator'>
+                                <img src={playersImages[normalizeName(player.playerName)]} alt={`${player.playerName}`} />
+                            </div>
+                            <div className='infoJucator'>
+                                {player.playerName && <p>Nume: {player.playerName}</p>}
+                                {player.statistic && <p>nationalitate: {player.statistic}</p>}
+                                {player.playerDetails && <p>pozitie: {player.playerDetails}</p>}
+                                {player.dataNastere && <p>Data nașterii: {player.dataNastere}</p>}
+                                {player.inaltime && <p>Înălțime: {player.inaltime}</p>}
+                            </div>
+                        </div>
+                        <div className='descriere'>{player.descriere}</div>
+                    </div>
+                ))
+            )}
         </div>
     );
-
 }
 
 export default Juvenili;

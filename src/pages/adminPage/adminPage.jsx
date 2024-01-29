@@ -23,12 +23,13 @@ import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../../components/AuthProvider';
 
-const isAdmin = localStorage.getItem('isAdmin');
-const isMedia = localStorage.getItem('isMedia');
 
 export const AdminPage = () => {
     const navigate = useNavigate();
+    const { isAdmin } = useAuth();
+
     const [hoveredRow, setHoveredRow] = useState(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -45,6 +46,7 @@ export const AdminPage = () => {
 
 
     useEffect(() => {
+
         const reqUsersList = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/users/getall');
@@ -53,13 +55,14 @@ export const AdminPage = () => {
                 console.error('Error fetching sponsor data:', error);
             }
         };
-        console.log(isAdmin)
-        if (isAdmin !== 'true') {
+
+
+        if (isAdmin !== true) {
             navigate('/');
         }
 
         reqUsersList();
-    }, []);
+    }, [isAdmin, navigate]);
 
     const handleMouseEnter = (rowId) => {
         setHoveredRow(rowId);
@@ -135,14 +138,6 @@ export const AdminPage = () => {
 
     return (
         <div className='AdminContainer'>
-            <img
-                src={
-                    process.env.PUBLIC_URL +
-                    '/374772816_874937010658932_698494937274974792_n.png'
-                }
-                alt="Echipa CSU Suceava"
-                className="Image"
-            />
             <div className='user-tabel'>
                 <TableContainer component={Paper}>
                     <Table>

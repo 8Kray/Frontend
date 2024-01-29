@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, FormControl, InputLabel, Select, MenuItem, Container } from '@mui/material';
+import { Typography, FormControl, InputLabel, Select, MenuItem, Container, Input } from '@mui/material';
 import './mainJ.css';
 import { useState } from 'react';
 import Slider from 'react-slick';
@@ -41,12 +41,16 @@ const premii = [
 ]
 const MainJuvenili = () => {
     const [categorie, setCategorie] = useState('');
-
+    const [nameFilter, setNameFilter] = useState('');
 
 
     const handleChange = (event) => {
         setCategorie(event.target.value);
 
+    };
+
+    const handleNameFilterChange = (event) => {
+        setNameFilter(event.target.value);
     };
 
     return (
@@ -82,7 +86,7 @@ const MainJuvenili = () => {
             </Container>
 
             <div className='categorie'>
-                <FormControl fullWidth>
+                <FormControl >
                     <InputLabel id="demo-simple-select-label">Categorie</InputLabel>
                     <Select
                         value={categorie}
@@ -93,9 +97,18 @@ const MainJuvenili = () => {
                         <MenuItem value={"cadeti"}>Cadeti</MenuItem>
                     </Select>
                 </FormControl>
+
+                <FormControl className='nameFilter'>
+                    <InputLabel htmlFor="name-filter">Nume Jucator</InputLabel>
+                    <Input
+                        id="name-filter"
+                        value={nameFilter}
+                        onChange={handleNameFilterChange}
+                    />
+                </FormControl>
             </div>
 
-            {categorie && <Juvenili categorie={categorie} />}
+            {categorie && <Juvenili categorie={categorie} nameFilter={nameFilter} />} {/* Aici transmiți doar categoria și filtrul de nume */}
 
         </div>
     );

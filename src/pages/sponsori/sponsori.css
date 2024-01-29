@@ -47,3 +47,22 @@
   margin-left: 10px;
   color: black;
 }
+
+.butoaneSponsori {
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+}
+.addButtonSponsor {
+  padding: 10px;
+  margin: 20px 0;
+  margin-left: auto;
+}
+.delleteIcon {
+  color: black;
+  transition: transform 0.3s ease; /* Adaugă o tranziție pentru o animație lină */
+}
+
+.delleteIcon:hover {
+  transform: scale(1.2); /* Mărește iconița la hover */
+}

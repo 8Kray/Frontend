@@ -30,3 +30,102 @@
 .add-user-btn:hover {
   cursor: pointer;
 }
+
+.personal-tabel {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  color: black;
+  font-size: 20px;
+  align-items: center;
+}
+
+.personal-tabel h2 {
+  margin-bottom: 10px;
+}
+
+.personal-tabel p {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.changeP {
+  margin: 15px 0;
+  font-size: 20px;
+  display: block;
+  width: 80%;
+  max-width: 400px;
+}
+
+.changeP label {
+  margin-bottom: 5px;
+}
+
+.changeP input {
+  width: 80%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.button-container {
+  display: flex;
+  margin-left: auto;
+}
+
+.button-container button {
+  padding: 10px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.button-container button:hover {
+  background-color: darkred; /* Schimbă culoarea la hover */
+}
+.changebutton {
+  margin-top: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.changebutton.valid {
+  background-color: darkgreen; /* Verde deschis pentru stare validă */
+  color: #fff;
+}
+
+.changebutton.invalid {
+  background-color: rgb(0, 36, 0); /* Verde închis pentru stare invalidă */
+  color: #fff;
+  cursor: not-allowed; /* Schimbă cursorul la "not-allowed" când butonul este invalid */
+  pointer-events: none; /* Dezactivează interacțiunea cu butonul când este invalid */
+}
+.editButton {
+  padding: 5px 10px;
+  background-color: #3498db; /* Schimbă culoarea la alegerea ta */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px; /* Adaugă spațiu între username și butonul de edit */
+}
+
+.editButton:hover {
+  background-color: #2980b9; /* Schimbă culoarea la hover la alegerea ta */
+}
+.changeUsername {
+  width: 20%;
+  height: 40px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

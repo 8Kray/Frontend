@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './logIn.css';
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -7,11 +7,11 @@ import Button from "@mui/material/Button";
 import { common } from '@mui/material/colors';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-
+import { useAuth } from '../../components/AuthProvider';
 
 export const LogIn = () => {
     const navigate = useNavigate();
-
+    const { setisAdmin, setisMedia, setUser } = useAuth();
     const [loginError, setLoginError] = useState(null);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -21,6 +21,11 @@ export const LogIn = () => {
         },
         mode: 'onChange'
     })
+
+    useEffect(() => {
+        setisAdmin(false);
+        setisMedia(false)
+    }, []);
 
     const onSubmit = async (values) => {
         const { email, password } = values;
@@ -34,14 +39,16 @@ export const LogIn = () => {
             if (response.status === 200) {
                 const response = await axios.get(`http://localhost:8080/users/get-by-email/${email}`);
                 if (response.status === 200 && response.data.level === "admin") {
-                    localStorage.setItem('isAdmin', 'true');
-                    localStorage.setItem('isMedia', 'false');
+                    setUser(response.data)
+                    setisAdmin(true)
+                    setisMedia(false)
                     navigate('/admin-page');
 
                 }
                 else if (response.status === 200 && response.data.level === "media") {
-                    localStorage.setItem('isMedia', 'true');
-                    localStorage.setItem('isAdmin', 'false');
+                    setUser(response.data)
+                    setisMedia(true)
+                    setisAdmin(false)
                     navigate('/');
                 }
                 else {

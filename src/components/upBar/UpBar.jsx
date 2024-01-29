@@ -2,10 +2,10 @@
 import React from 'react';
 import './upBar.css';
 import { Link } from 'react-router-dom';
-
-const isAdmin = localStorage.getItem('isAdmin');
+import { useAuth } from '../AuthProvider';
 
 export const UpBar = () => {
+  const { isAdmin } = useAuth();
 
   return (
     <div className="bar">
@@ -30,7 +30,7 @@ export const UpBar = () => {
       <a href={'https://www.sofascore.ro/ro/echipa/handbal/csu-suceava/117656'} className="link" target="_blank" rel="noopener noreferrer">
         <h5>Clasament</h5>
       </a>
-      {isAdmin === 'true' ? (
+      {isAdmin ? (
         <Link to={'/admin-page'} className="link">
           <h5>Administrare</h5>
         </Link>
