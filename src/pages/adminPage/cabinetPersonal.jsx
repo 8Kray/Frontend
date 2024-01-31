@@ -85,7 +85,6 @@ export const CabinetPersonal = () => {
             };
             const fetchData = async () => {
                 try {
-                    console.log("111")
                     await axios.put(`http://localhost:8080/users/update{users}?username=${user.username}`, updatedUserData);
                     const response = await axios.get(`http://localhost:8080/users/get-by-username/${user.username}`);
                     setUser(response.data);

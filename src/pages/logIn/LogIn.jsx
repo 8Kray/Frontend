@@ -33,11 +33,11 @@ export const LogIn = () => {
         try {
             // nu functioneaza, intoarce status 200 mereu
             const response = await axios.post('http://localhost:8080/users/login', {
-                email: email,
+                username: email,
                 password: password,
             });
             if (response.status === 200) {
-                const response = await axios.get(`http://localhost:8080/users/get-by-email/${email}`);
+                const response = await axios.get(`http://localhost:8080/users/get-by-username/${email}`);
                 if (response.status === 200 && response.data.level === "admin") {
                     setUser(response.data)
                     setisAdmin(true)
@@ -81,10 +81,10 @@ export const LogIn = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <TextField
                             className="field"
-                            label="E-Mail"
+                            label="Username"
                             error={Boolean(errors.email?.message)}
                             helperText={errors.email?.message}
-                            type='email'
+                            type='text'
                             {...register('email', { required: " Insert E-mail" })}
                             fullWidth
                         />

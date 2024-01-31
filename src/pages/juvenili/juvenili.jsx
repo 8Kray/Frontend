@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import './juvenili.css';
 import axios from 'axios';
+import CloseIcon from '@mui/icons-material/Close';
 
 const normalizeName = (name) => name.replace(/\s+/g, '').toLowerCase();
 
@@ -27,25 +28,24 @@ const playersImages = {
     raresostafe: process.env.PUBLIC_URL + '/juniori 2/rares_ostafe_centru-removebg-preview.png',
     razvancosoreanu: process.env.PUBLIC_URL + '/juniori 2/razvan_cosoreanu_centru-removebg-preview.png',
 };
+const defoultImage = process.env.PUBLIC_URL + '/juniori 2/images.png';
 
-const Juvenili = ({ categorie, nameFilter }) => {
+const Juvenili = ({ categorie, nameFilter, delActive, handleOpenDialogDell, onPlayerDelete, flag }) => {
 
     const [juveniliData, setJuveniliData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/players/all');
+                const response = await axios.get('http://localhost:8080/players/getall');
                 setJuveniliData(response.data);
-                console.log(response.data)
             } catch (error) {
                 console.error('Error fetching sponsor data:', error);
             }
         };
 
         fetchData();
-    }, []);
-
+    }, [flag]);
 
 
     // Filtrare pentru a include doar jucătorii care nu au "stuff" în descriere
@@ -53,11 +53,16 @@ const Juvenili = ({ categorie, nameFilter }) => {
 
     // Filtrare suplimentară în funcție de categorie
     const filteredAndCategorizedPlayers = filteredPlayers.filter(player =>
-        categorie === 'jucatori' ? player.statistic === 'RO' : player.statistic === 'RO'
+        categorie === 'jucatori' ? player.statistic === 'RO' || 'MD' || 'RU' || 'IT' : player.statistic === 'RO'
     );
     const filteredAndSearchedPlayers = filteredAndCategorizedPlayers.filter(player =>
         nameFilter === '' || player.playerName.toLowerCase().includes(nameFilter.toLowerCase())
     );
+    const handlerOpenDeleteDialog = (playerID) => {
+        handleOpenDialogDell(true);
+        onPlayerDelete(playerID) // Apelăm funcția de callback pentru a actualiza starea în componenta parinte
+    };
+
     return (
         <div>
             {filteredAndSearchedPlayers.length === 0 ? (
@@ -67,10 +72,19 @@ const Juvenili = ({ categorie, nameFilter }) => {
             ) : (
                 filteredAndSearchedPlayers.map((player) => (
                     <div className='jucatori' key={player.id}>
+                        {delActive ? (
+                            <CloseIcon className='delleteIcon' onClick={() => handlerOpenDeleteDialog(player.playerId)} />
+                        ) : null}
                         <Typography className='profileText'>PROFIL</Typography>
                         <div key={player.id} className='box'>
                             <div className='pozaJucator'>
-                                <img src={playersImages[normalizeName(player.playerName)]} alt={`${player.playerName}`} />
+                                {normalizeName(player.playerName) in playersImages ? (
+                                    <img src={playersImages[normalizeName(player.playerName)]} alt={`${player.playerName}`} />
+                                ) : (
+                                    // Afișează o imagine implicită când nu se găsește imaginea specifică pentru sponsor
+                                    <img src={defoultImage} alt="Imagine implicită pentru sponsor" />
+                                )}
+
                             </div>
                             <div className='infoJucator'>
                                 {player.playerName && <p>Nume: {player.playerName}</p>}

@@ -25,6 +25,8 @@ const sponsorImages = {
     Suceava: process.env.PUBLIC_URL + '/sponsors/suceava.png',
 };
 
+const defaultImage = process.env.PUBLIC_URL + '/sponsors/sposor.jpg';
+
 const Sponsori = () => {
     const { isAdmin, user, setUser } = useAuth();
 
@@ -32,9 +34,9 @@ const Sponsori = () => {
     const [openDialogAdd, setOpenDialogAdd] = useState(false);
     const [openDialogDell, setOpenDialogDell] = useState(false);
     const [newSponsorData, setNewSponsorData] = useState({
-        sponsor: '',
-        sponsorDetails: '',
-        sponsorLink: '',
+        sponsor: "",
+        sponsorDetails: "",
+        sponsorLink: "",
         users: {
             username: user.username,
         },
@@ -49,6 +51,7 @@ const Sponsori = () => {
 
 
     useEffect(() => {
+
 
         const fetchData = async () => {
             try {
@@ -77,9 +80,9 @@ const Sponsori = () => {
         setOpenDialogAdd(false);
         // Resetarea valorilor din formular la închiderea dialogului
         setNewSponsorData({
-            sponsor: '',
-            sponsorDetails: '',
-            sponsorLink: '',
+            sponsor: "",
+            sponsorDetails: "",
+            sponsorLink: "",
             users: {
                 username: user.username,
             },
@@ -139,7 +142,7 @@ const Sponsori = () => {
             return;
         }
 
-        if (newSponsorData.sponsor.length > nameMaxLength) {
+        if (!newSponsorData.sponsor.trim() || newSponsorData.sponsor.length > nameMaxLength) {
             setNameError(true);
             return;
         }
@@ -148,8 +151,8 @@ const Sponsori = () => {
             setLinkError(true);
             return;
         }
-        const jsonString = JSON.stringify(newSponsorData);
-        console.log(jsonString);
+
+
         try {
             await axios.post('http://localhost:8080/sponsors/add', newSponsorData, {
                 headers: {
@@ -169,6 +172,10 @@ const Sponsori = () => {
     const handlerOpenDeleteDialog = (sponsorsID) => {
         setSponsorToDelete(sponsorsID);
         setOpenDialogDell(true);
+    };
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+
     };
     return (
         <div className='SponsoriContainer'>
@@ -190,7 +197,12 @@ const Sponsori = () => {
                     <div key={sponsor.id} className='box'>
 
                         <div className='pozaSponsor'>
-                            <img src={sponsorImages[sponsor.sponsor]} alt={`${sponsor.sponsor}`} />
+                            {sponsor.sponsor in sponsorImages ? (
+                                < img src={sponsorImages[sponsor.sponsor]} alt={`${sponsor.sponsor}`} />
+                            ) : (
+                                // Afișează o imagine implicită când nu se găsește imaginea specifică pentru sponsor
+                                <img src={defaultImage} alt="Imagine implicită pentru sponsor" />
+                            )}
                         </div>
                         <div className='infoSponsor'>
                             <h2>{sponsor.sponsor}</h2>
@@ -207,7 +219,7 @@ const Sponsori = () => {
                             className='addButtonSponsor'
                             onClick={handleDelSponsor}
                         >
-                            Delete Sponsor
+                            Sterge Sponsor
                         </button>
                     </div>
                     <div>
@@ -215,7 +227,7 @@ const Sponsori = () => {
                             className='addButtonSponsor'
                             onClick={handleAddSponsor}
                         >
-                            Add Sponsor
+                            Adauga Sponsor
                         </button>
                     </div>
                 </div>
@@ -261,6 +273,15 @@ const Sponsori = () => {
                         helperText={linkError && 'Link-ul nu este valid.'}
                         error={linkError}
                     />
+                    <TextField
+                        name='SponsorImage'
+                        type='file'
+                        accept='image/*'
+                        onChange={handleImageChange}
+                        fullWidth
+                        margin='normal'
+                    />
+
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleAddDialogClose} color='primary'>
@@ -276,7 +297,7 @@ const Sponsori = () => {
             <Dialog open={openDialogDell} onClose={handleDellDialogClose}>
                 <DialogTitle>Ștergere Sponsor</DialogTitle>
                 <DialogContent>
-                    <p> Sigur doriți să ștergeți sponsorul cu ID-ul selectat?</p>
+                    <p> Sigur doriți să ștergeți sponsorul selectat?</p>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleDellDialogClose} color='primary'>
