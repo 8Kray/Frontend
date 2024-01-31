@@ -15,7 +15,7 @@ export const UpBar = () => {
       <Link to={'/about-us'} className="link">
         <h5>Detalii Club</h5>
       </Link>
-      <Link to={'/'} className="link">
+      <Link to={'/calendar'} className="link">
         <h5>Calendar Meciuri</h5>
       </Link>
       <Link to={'/news'} className="link">

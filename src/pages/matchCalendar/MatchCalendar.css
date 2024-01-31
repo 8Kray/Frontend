@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'DINRegular';
+  src: url('../../../fonts/DIN/Regular/URWDIN-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINBold';
+  src: url('../../../fonts/DIN/Bold/URWDIN-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+.MatchCalendarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: #0b132b;
+  color: #fff;
+}
+
+.CalendarsContainer {
+  width: 60%;
+  margin-bottom: 50px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+th,
+td {
+  border: 1px solid #2a3548; /* Darker border color for better visibility */
+  padding: 8px;
+  text-align: left;
+  color: #fff;
+}
+
+th {
+  background-color: #1f2a3a; /* Darker background for header */
+}
+
+tr.winner td {
+  background-color: #336633; /* Darker green for winner */
+}
+
+tr.loser td {
+  background-color: #803f4d; /* Darker red for loser */
+}
+
+.CalendarTable {
+  font-size: 14pt;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.CalendarTable th,
+.CalendarTable td {
+  padding: 10px;
+  text-align: center;
+  border: 2px solid #2a3548; /* Darker border color */
+}
+
+.CalendarTable .ScoreColumn {
+  width: 80px;
+}
+
+.CalendarTable .Winner {
+  background-color: #4caf50; /* Green background for winner */
+}
+
+.CalendarTable .Loser {
+  background-color: #e57373; /* Light red background for loser */
+}
+
+.CalendarTable th,
+.CalendarTable td {
+  font-family: 'DINBold', sans-serif;
+}
+
+.CalendarTable th.Winner,
+.CalendarTable td.Winner,
+.CalendarTable th.Loser,
+.CalendarTable td.Loser {
+  font-family: 'DINBold', sans-serif;
+}
+
+.TeamImage {
+  width: 100%;
+  max-height: 500px;
+  object-fit: cover;
+  margin-bottom: 40px;
+}

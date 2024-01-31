@@ -17,125 +17,111 @@ import CabinetPersonal from './pages/adminPage/cabinetPersonal';
 import Personal from './pages/personal/Personal';
 import Sponsori from './pages/sponsori/sponsori';
 import Juvenili from './pages/juvenili/mainJuvenili';
+import MatchCalendar from './pages/matchCalendar/MatchCalendar';
 import News from './pages/news/news';
 import { AuthProvider } from './components/AuthProvider';
 
 const App = () => {
   return (
     <Router>
-      <AuthProvider>
-        <main>
-          <div>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<Home />} />
-              </Route>
-              <Route
-                path="/about-us"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<AboutUs />} />
-              </Route>
-              <Route
-                path="/admin-page"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<AdminPage />} />
-              </Route>
-              <Route
-                path="/admin-page/personal"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<CabinetPersonal />} />
-              </Route>
-              <Route
-                path="/personal"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<Personal />} />
-              </Route>
-              <Route
-                path="/sponsori"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<Sponsori />} />
-              </Route>
-              <Route
-                path="/juvenili"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<Juvenili />} />
-              </Route>
-              <Route
-                path="/news"
-                element={
-                  <>
-                    <Header />
-                    <UpBar />
-                    <Outlet />
-                    <Footer />
-                  </>
-                }
-              >
-                <Route index element={<News />} />
-              </Route>
-              <Route path="/login" element={<LogIn />} />
-            </Routes>
-          </div>
-        </main>
-      </AuthProvider>
+      <main>
+        <div>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Home />} />
+            </Route>
+            <Route
+              path="/about-us"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<AboutUs />} />
+            </Route>
+            <Route
+              path="/admin-page"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<AdminPage />} />
+            </Route>
+            <Route
+              path="/personal"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Personal />} />
+            </Route>
+            <Route
+              path="/sponsori"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Sponsori />} />
+            </Route>
+            <Route
+              path="/juvenili"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<Juvenili />} />
+            </Route>
+            <Route
+              path="/news"
+              element={
+                <>
+                  <Header />
+                  <UpBar />
+                  <Outlet />
+                  <Footer />
+                </>
+              }
+            >
+              <Route index element={<News />} />
+            </Route>
+            <Route path="/login" element={<LogIn />} />
+          </Routes>
+        </div>
+      </main>
     </Router>
   );
 };
