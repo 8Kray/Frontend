@@ -6,7 +6,7 @@
 }
 
 .AboutContainer {
-  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  background: linear-gradient(to bottom, #0b132b, #0b132b);
   min-height: 100vh;
   display: flex;
   flex-direction: column;

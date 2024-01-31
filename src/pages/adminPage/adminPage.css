@@ -1,5 +1,5 @@
 .AdminContainer {
-  background: linear-gradient(to bottom, #3f3f95, #0b132b);
+  background: linear-gradient(to bottom, #0b132b, #060e24);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
