@@ -38,7 +38,7 @@ const Sponsori = () => {
         sponsorDetails: "",
         sponsorLink: "",
         users: {
-            username: user.username,
+            username: "",
         },
     });
 
@@ -46,7 +46,7 @@ const Sponsori = () => {
     const [nameError, setNameError] = useState(false);
     const [linkError, setLinkError] = useState(false);
     const [delActive, setDelActive] = useState(false);
-    const [rezervUser, setRezerv] = useState(user.username);
+
     const [sponsorToDelete, setSponsorToDelete] = useState(null);
 
 
@@ -55,9 +55,7 @@ const Sponsori = () => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/users/get-by-username/${rezervUser}`);
-                setUser(response.data);
-                setRezerv(response.data.username);
+
                 const response1 = await axios.get('http://localhost:8080/sponsors/getall');
                 setSponsorsData(response1.data);
 
@@ -67,7 +65,7 @@ const Sponsori = () => {
         };
 
         fetchData();
-    }, [user.username]);
+    }, []);
 
 
     const handleAddSponsor = () => {
@@ -84,7 +82,7 @@ const Sponsori = () => {
             sponsorDetails: "",
             sponsorLink: "",
             users: {
-                username: user.username,
+                username: "",
             },
         });
         setYearError(false);
@@ -152,6 +150,8 @@ const Sponsori = () => {
             return;
         }
 
+
+        newSponsorData.users.username = user.username;
 
         try {
             await axios.post('http://localhost:8080/sponsors/add', newSponsorData, {

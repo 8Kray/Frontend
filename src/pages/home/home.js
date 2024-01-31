@@ -31,14 +31,14 @@ const Home = () => {
       <div className="NewsBox">
         <NewsPanel />
       </div>
-      <div className="InfoMeciuri">
+      {/* <div className="InfoMeciuri">
         <div className="InfoMeciuriBox">
           <UltimulMeci />
         </div>
         <div className="InfoMeciuriBox">
           <UrmatorulMeci />
-        </div>
-      </div>
+        </div> 
+      </div>*/}
     </div>
   );
 };
